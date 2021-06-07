@@ -10,12 +10,12 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build . --file Dockerfile --tag localbuild/testimage:latest
+          docker build -t docker.io/my-app:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'docker build . --file Dockerfile --tag localbuild/testimage:latest'
+          image-ref: 'docker.io/my-app:${{ github.sha }}'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
