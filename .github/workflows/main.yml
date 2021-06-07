@@ -20,5 +20,7 @@ jobs:
         uses: anchore/scan-action@v2
         with:
           image: "localbuild/testimage:latest"
+          fail-build: true
+          severity-cutoff: critical
 
 
