@@ -13,7 +13,7 @@ jobs:
           fail-build: true
       - name: Inspect Json report root
         run: ls
-      - name: Inspect Json report anchore
-        run: ls ./anchore-reports
+      - name: Display ulnerabilities.json
+        run: cat vulnerabilities.json
       - name: grype scan JSON results
-        run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
+        run: for j in `ls /*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
