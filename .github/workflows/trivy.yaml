@@ -1,9 +1,5 @@
 name: build trivy
-on:
-  push:
-    branches:
-      - main
-  pull_request:
+on: [push]
 jobs:
   build:
     name: build trivy
