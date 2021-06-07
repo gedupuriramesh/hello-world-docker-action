@@ -16,4 +16,4 @@ jobs:
       - name: Display ulnerabilities.json
         run: cat vulnerabilities.json
       - name: grype scan JSON results
-        run: for j in `ls /*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
+        run: for j in `ls *.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
