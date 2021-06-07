@@ -1,0 +1,27 @@
+name: build trivy
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  build:
+    name: build trivy
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build an image from Dockerfile
+        run: |
+          docker build . --file Dockerfile --tag localbuild/testimage:latest
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker build . --file Dockerfile --tag localbuild/testimage:latest  '
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'

@@ -2,6 +2,7 @@ name: Container Image CI
 on: [push]
 jobs:
   build:
+    name: build anchore
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
